@@ -273,3 +273,40 @@ nav h1 a {
 #restaurant-hours td {
   color: #666;
 }
+
+/* ====================== Responsive ====================== */
+@media only screen and (max-width: 600px) {
+	header {
+	 display: flex;
+		flex-direction: column;
+	}
+	header nav {
+	 order: 0;
+	}
+	header #breadcumb {
+	 order: 1;
+	 width: 100%;
+	 text-align: center;
+	}
+	.inside #map-container {
+	 order: 2;
+	 width: 100%;
+	 position: relative;
+	}
+	.inside #restaurant-container {
+	 order: 3;
+	 width: 100%;
+	 position: relative;
+	 text-align: center;
+	}
+	.inside #reviews-container {
+	 order: 4;
+	 width: 100%;
+	}
+	.inside #footer {
+	 order: 5;
+	 width: 100%;
+	}
+	
+	
+	
