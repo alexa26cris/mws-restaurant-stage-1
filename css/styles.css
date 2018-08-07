@@ -109,6 +109,9 @@ nav h1 a {
   height: 50px;
   background-color: #3397DB;
   align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .filter-options h2 {
   color: white;
@@ -136,6 +139,10 @@ nav h1 a {
   margin: 0;
   padding: 30px 15px 60px;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 #restaurants-list li {
   background-color: #fff;
@@ -242,6 +249,10 @@ nav h1 a {
   padding: 140px 40px 30px;
   width: 50%;
 }
+#restaurant-container {
+  display: flex;
+  flex-direction: column;
+}
 #reviews-container {
   padding: 30px 40px 80px;
 }
@@ -259,7 +270,9 @@ nav h1 a {
 #reviews-list li {
   background-color: #fff;
     border: 2px solid #f3f3f3;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   list-style-type: none;
   margin: 0 0 30px;
   overflow: hidden;
