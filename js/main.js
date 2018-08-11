@@ -78,7 +78,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-    mapboxToken: 'pk.eyJ1IjoiYWxleGFuZHJhY3Jpc2FuMDYiLCJhIjoiY2praTR4ajNmMGM0NDNrcGhpN3F2emJ1byJ9.Sy0kLMZ0oZwJO0-HTHYcNg',
+    mapboxToken: 'pk.eyJ1IjoiY2F0aGVyaW5lLWhhZGppaXNrYSIsImEiOiJjamthcTZqdWowcjN1M3JwbnA1Ym95NTV5In0.F-UJMktp9cuvxTHfIrmiPw',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -160,10 +160,11 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
+  image.alt = restaurant.name;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h3');
   name.innerHTML = restaurant.name;
   li.append(name);
 
@@ -178,6 +179,7 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute('aria-label', 'View Details'); // add arial label
   li.append(more)
 
   return li
@@ -209,27 +211,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 } */
 
-/**
-* Add ServiceWorker.
-*/
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
-  .then((reg) => {
-    //successful registration
-    if(reg.installing) {
-      console.log('Service Worker installing.');
-    }
-    else if(reg.waiting) {
-      console.log('Service Worker installed.');
-    }
-    else if(reg.active) {
-      console.log('Service Worker active.'):
-    }
-    console.log('Successful Service Worker Registration: ' + reg.scope);
-  }).catch((error) => {
-    //registration failed
-    console.log('Service Worker Registration Failed: ' + error);
-  });
-}
-    
