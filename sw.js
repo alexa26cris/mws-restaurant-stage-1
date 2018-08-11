@@ -1,13 +1,5 @@
-/**
-* Service Worker File
-*/
-
-var staticCacheName = 'restaurant-static-v';
-
-let filesToCache = [
+var filesToCache = [
 './', 
-'./index.html',
-'./restaurant.html',
 './css/styles.css',
 './data/restaurants.json',
 './img/1.jpg',
@@ -22,42 +14,25 @@ let filesToCache = [
 './img/10.jpg',
 './js/dbhelper.js',
 './js/restaurant_info.js',
-'./js/main.js'
+'./js/main.js',
+'./index.html',
+'./restaurant.html',
 ];
+
+var staticCacheName = 'pages-cache-v1';
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open(staticCacheName)
 		.then(function(cache) {
-    console.log(cache);
 			return cache.addAll(filesToCache);
-		}).catch(error) => {
-    console.log(error);
 		})
-    );
+		);
 });
 
-self.addEventListener('activate', function(event) {
-	event.waitUntil(
-		caches.keys()
-		.then(function(cacheNames) {
-			return Promise.all(cacheNames.filter(function(cacheName) {
-      return cacheName.startsWith('restaurant ') && cacheName != staticCacheName;
-      })
-      .map(function(cacheName) {
-      return caches.delete(cacheName);
-      })
-      );
-      })
-      );
-      });
-
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', event => {
 	event.respondWith(
-		caches.match(event.request)
-		.then(function(response) {
-      return response || fetch(event.request);
-      })
-      );
-      });
-			
+		filesToCache.match(event.request, { ignoreSearch: true }).then(response => {return response || fetch(event.request);
+		}).catch(err => console.log(err))
+		);
+});
