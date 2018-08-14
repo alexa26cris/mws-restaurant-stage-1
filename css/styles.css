@@ -205,27 +205,27 @@ nav h1 a {
 
 /* ======================= Responsive ====================== */
 
-@media only screen and (max-width: 599px) {
+@media only screen and (max-width: 600px) {
 	header {
 	 display: flex;
 	 flex-direction: column;
  }
  .inside {
-			display: flex;
-			flex-direction: row;
-			width: 100%;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
 	}
-	.inside header {
-		order: 0;
-		width: 100%
+ .inside header {
+	order: 0;
+	width: 100%
 	}
 	header nav {order: 0;}
-	header #breadcrumb {order: 1;width: 100%}
+	header #breadcrumb {order: 1; width: 100%}
 	.inside #map-container {
 	  order: 2;
-		top: 130px;
+		top: 120px;
 	  width: 100%;
-		height: 35%;
+		height: 40%;
 		position: relative;
 	}
 	.inside #restaurant-container {
@@ -236,9 +236,6 @@ nav h1 a {
 		order: 4;
 	  width: 100%;
 	}
-	/* .inside #restaurant-hours td {
-	  text-size: 16px;
-	} */
 	.inside #footer {
 		order: 5;
 	  width: 100%;
