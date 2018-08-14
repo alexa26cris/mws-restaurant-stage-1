@@ -1,8 +1,8 @@
 let restaurants,
   neighborhoods,
-  cuisines
-var newMap
-var markers = []
+  cuisines;
+var newMap;
+var markers = [];
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -78,7 +78,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-    mapboxToken: 'pk.eyJ1IjoiY2F0aGVyaW5lLWhhZGppaXNrYSIsImEiOiJjamthcTZqdWowcjN1M3JwbnA1Ym95NTV5In0.F-UJMktp9cuvxTHfIrmiPw',
+    mapboxToken: 'pk.eyJ1IjoibXVoYW1tYWQtc2FpZCIsImEiOiJjamszbThicjcxMTcxM3BtcWRqOXo4eHBmIn0.8IvWIABTs2clVTSKWdGeUw',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -160,11 +160,11 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-  image.alt = restaurant.name;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+image.alt = 'restaurant photo';
   li.append(image);
 
-  const name = document.createElement('h3');
+  const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
   li.append(name);
 
@@ -179,7 +179,6 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
-  more.setAttribute('aria-label', 'View Details'); // add arial label
   li.append(more)
 
   return li
@@ -211,3 +210,23 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 } */
 
+
+/*======================= service worker ==========================*/
+// //SW
+// if ('serviceWorker' in navigator){
+//   navigator.serviceWorker.register('./js/sw/sw.js').then((reg)=>{
+//     if(reg.installig){
+//       console.log('service worker is installing now');
+//     }
+//     else if (reg.waiting) {
+//       console.log('service worker is installed');
+//     }
+//     else if (reg.active) {
+//       console.log('service worker is active');
+//     }
+//     console.log('registeration succeded the scope is '+reg.scope);
+//
+//   }).catch((error)=>{
+//     console.log('registration failed with '+error);
+//   });
+// }
