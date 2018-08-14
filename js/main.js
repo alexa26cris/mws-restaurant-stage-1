@@ -1,8 +1,8 @@
 let restaurants,
   neighborhoods,
-  cuisines;
-var newMap;
-var markers = [];
+  cuisines
+var newMap
+var markers = []
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -69,7 +69,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 }
 
 /**
- * Initialize leaflet map, called from HTML.
+ * Initialize leaflet map.
  */
 initMap = () => {
   self.newMap = L.map('map', {
@@ -94,7 +94,7 @@ initMap = () => {
     lng: -73.987501
   };
   self.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
+    zoom: 13,
     center: loc,
     scrollwheel: false
   });
@@ -114,10 +114,11 @@ updateRestaurants = () => {
   const cuisine = cSelect[cIndex].value;
   const neighborhood = nSelect[nIndex].value;
 
-  DBHelper.fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, (error, restaurants) => {
-    if (error) { // Got an error!
+  DBHelper.fetchRestaurantByNeighborhoodAndCuisine(neighborhood, cuisine (error, restaurants) => {
+    if (error) { 
       console.error(error);
-    } else {
+    } 
+    else {
       resetRestaurants(restaurants);
       fillRestaurantsHTML();
     }
@@ -160,11 +161,11 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
+  image.alt = restaurant.name;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
-image.alt = 'restaurant photo';
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h3');
   name.innerHTML = restaurant.name;
   li.append(name);
 
@@ -179,13 +180,14 @@ image.alt = 'restaurant photo';
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute('aria-label', 'View Details'); // add arial label
   li.append(more)
 
   return li
 }
 
 /**
- * Add markers for current restaurants to the map.
+ * Add markers to the map.
  */
 addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
@@ -209,24 +211,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 } */
-
-
-/*======================= service worker ==========================*/
-// //SW
-// if ('serviceWorker' in navigator){
-//   navigator.serviceWorker.register('./js/sw/sw.js').then((reg)=>{
-//     if(reg.installig){
-//       console.log('service worker is installing now');
-//     }
-//     else if (reg.waiting) {
-//       console.log('service worker is installed');
-//     }
-//     else if (reg.active) {
-//       console.log('service worker is active');
-//     }
-//     console.log('registeration succeded the scope is '+reg.scope);
-//
-//   }).catch((error)=>{
-//     console.log('registration failed with '+error);
-//   });
-// }
