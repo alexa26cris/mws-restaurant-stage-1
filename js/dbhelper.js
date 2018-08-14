@@ -1,20 +1,6 @@
-/**
+//**
  * Common database helper functions.
  */
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-  .register('sw.js', {
-    scope: ''
-  })
-  .then(function(registration) {
-    console.log("Service Worker registration is complete:", registration.scope);
-
-  }).catch(function(error) {
-    console.log("Service Worker registration failed:", + error);
-});
-}
-
 class DBHelper {
 
   /**
@@ -23,7 +9,8 @@ class DBHelper {
    */
   static get DATABASE_URL() {
     const port = 8000 // Change this to your server port
-    return `http://localhost:${port}/data/restaurants.json`;
+    //return `http://localhost:${port}/data/restaurants.json`;
+	return `https://muhammad-said.github.io/RestaurantReview/data/restaurants.json`;
   }
 
   /**
@@ -164,7 +151,7 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}`);
+    return (`./img/${restaurant.photograph}`);
   }
 
   /**
